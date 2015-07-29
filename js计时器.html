@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<style type="text/css">
+
+div
+{
+	width:65%;
+	margin:0 auto;
+
+}
+#clock {
+	color:#8bb544;
+	text-transform:uppercase;
+	letter-spacing:-.05em;
+	position:relative;	
+    font-size: 30px;
+  }
+#timer
+{
+	border-style: solid;
+	border-color: pink;
+	padding:0px 0px 10px 10px;
+}
+#timer100
+{
+	border-style: solid;
+	border-color: pink;
+	padding:0px 0px 10px 10px;
+}
+</style>
+
+	<script type="text/javascript">
+
+	function forbid(obj)
+   {  
+   
+   	switch (obj){
+   		case 'initial':  btnStop.disabled=true;
+   						btnPause.disabled=true;
+   						btnStop2.disabled=true;
+   						btnPause2.disabled=true;
+   						break;
+   		case 'btnStart':  btnStart.disabled=true;
+   						btnPause.disabled=false;
+   						btnStop.disabled=false;
+   						break;
+   		case 'btnPause':  btnStart.disabled=false;
+   						btnPause.disabled=true;
+   						break;
+   		case 'btnStop':   btnStart.disabled=false;
+   						btnPause.disabled=true;
+   						btnStop.disabled=true;
+   						break;
+   		case 'btnStart2':  btnStart2.disabled=true;
+   						btnPause2.disabled=false;
+   						btnStop2.disabled=false;
+   						break;
+   		case 'btnPause2':  btnStart2.disabled=false;
+   						btnPause2.disabled=true;
+   						break;
+   		case 'btnStop2':  btnStart2.disabled=false;
+   						btnPause2.disabled=true;
+   						btnStop2.disabled=true;
+   						break;
+   		
+   	}
+   
+   }
+
+	//显示系统当前日期时间
+	function startTime() {
+		var today = new Date();
+		var month = today.getMonth()+1;
+		var year = today.getFullYear();
+		var date = today.getDate();
+		var d = today.getDay();
+		var h = today.getHours();
+		var m = today.getMinutes();
+		var s = today.getSeconds();  
+		var weekday=new Array(7);
+		weekday[0]="星期日";
+		weekday[1]="星期一";
+		weekday[2]="星期二";
+		weekday[3]="星期三";
+		weekday[4]="星期四";
+		weekday[5]="星期五";
+		weekday[6]="星期六";
+		m=checkTime(m);
+		s=checkTime(s);
+		document.getElementById('clock').innerHTML= year+'年'+month+'月'+date+'日'+' '+weekday[d]+'</br>'+
+			h+':'+m+':'+s;
+		t=setTimeout('startTime()',500);
+	}
+	function checkTime(i){
+		if (i<10) 
+	  	{i="0" + i}
+	  	return i
+	}
+
+	//计时器，通过调用系统时间实现
+	var t0,t1,t2,T;
+	var start = 0,pause = 0;    //开始、结束标志
+	var totalSecs = 0;     //总时间
+	var	pauseSecs = 0;      //暂停时间
+
+	function timerStop () {
+		clearTimeout(T);
+		start=0;
+		pauseSecs=0;
+		document.getElementById('text').value = "00:00:00";
+	}
+	function timerPause () {
+		t1 = new Date();   //记录暂停前的时间
+		clearTimeout(T);
+		pause = 1;
+	}
+
+	function timerStart () {
+		//如果刚刚开始计时，则记录开始前的时间
+		if (!start) {t0 = new Date();}
+		//如果刚刚经过暂停，则累计暂停时长
+		if (pause) {
+			pauseSecs += (new Date()-t1)/1000;
+			pause = 0;
+		}
+		totalSecs = (new Date()-t0)/1000-pauseSecs;
+		var days=Math.floor(totalSecs/3600/24);
+ 		var hours=Math.floor((totalSecs-days*24*3600)/3600);
+ 		var mins=Math.floor((totalSecs-days*24*3600-hours*3600)/60);
+ 		var secs=Math.floor((totalSecs-days*24*3600-hours*3600-mins*60));
+ 		hours=checkTime(hours);
+		secs=checkTime(secs);
+		mins=checkTime(mins);
+ 		document.getElementById('text').value = hours+":"+mins+":"+secs;
+ 		start = 1;
+ 		T=setTimeout('timerStart()',500);	
+	}
+
+	//100秒的计时器，通过延时函数实现
+	var T2;//延时函数id
+	var s1=0,s2=0,s3=0;//秒数第一、二、三位
+	var j=0;
+	function timerStart2 () {
+		s1+=1;
+		//进位
+		if (s1==10) {
+			s2+=1
+			s1=0;
+			if (s2==10) {
+				s3+=1;
+				s2=0;
+				if (s3==10) {
+					timerStop2();
+				};
+			};
+		}
+		document.getElementById('text2').value =s3.toString()+s2.toString()+s1.toString();
+		T2=setTimeout('timerStart2()',1000)
+	}
+	
+	function timerStop2 () {
+		clearTimeout(T2);
+		s1=0;
+		s2=0;
+		s3=0;
+		j=0;
+		document.getElementById('text2').value = "000";
+	}
+	function timerPause2 () {
+		clearTimeout(T2);
+	}
+	</script>
+</head>
+
+<body onload = "startTime();forbid('initial')">
+	<div id="Container">
+		<div id="content">
+			<div id = "clock"> </div>
+			<div id = "timer">
+				<h1>时分秒计时器</h1>
+				<input type="text" id="text" value="00:00:00" readonly></input>
+				<input type="button" id="btnStart" value="开始" onclick="forbid(id);timerStart()" ></input>
+				<input type="button" id="btnPause" value="暂停" onclick="forbid(id);timerPause()" ></input>
+				<input type="button" id="btnStop" value="停止" onclick="forbid(id);timerStop()" ></input>
+			</div>
+			<div id = "timer100">
+				<h1>百秒计时器</h1>
+				<input type="text" id="text2" value="000" readonly></input>
+				<input type="button" id="btnStart2" value="开始" onclick="forbid(id);timerStart2()" ></input>
+				<input type="button" id="btnPause2" value="暂停" onclick="forbid(id);timerPause2()" ></input>
+				<input type="button" id="btnStop2" value="停止" onclick="forbid(id);timerStop2()" ></input>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
