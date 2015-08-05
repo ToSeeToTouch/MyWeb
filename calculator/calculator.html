@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> -->
+	<title>Web¼ÆËãÆ÷V1.0</title>
+	<link rel="stylesheet" type="text/css" href="calculator.css" />
+	<script type="text/javascript" src="calculate.js"></script>
+	<script type="text/javascript">document.onkeypress=keyPress;document.onkeydown=keyDown;</script>
+</head>
+<body>
+	<div class="container">
+	<div class="calculate">
+		<div class="calculate base">
+			<p>
+				<input type="text" id="disText" value="0"  readonly>
+				<table align="center">
+					<tr>
+						<td><input type="button" class="button symbol" onclick="back()" id="back" value="<--"></td>
+						<td><input type="button" class="button symbol" onclick="clearError(1)" id="CE" value="CE"></td>
+						<td><input type="button" class="button symbol" onclick="Clear (1) " id="C" value="C"></td>
+						<td><input type="button" class="button symbol" onclick="negative()" id="negative" value="¡À"></td>
+						<td><input type="button" class="button symbol" onclick="square()" id="square" value="¡Ì"></td>
+					</tr>
+					<tr>
+						<td><input type="button" class="button number" onclick="input(value)" id="seven" value="7"></td>
+						<td><input type="button" class="button number" onclick="input(value)" id="eight" value="8"></td>
+						<td><input type="button" class="button number" onclick="input(value)" id="nine" value="9"></td>
+						<td><input type="button" class="button symbol" onclick="operation(4)" id="divide" value="/"></td>
+						<td><input type="button" class="button symbol" onclick="percent()" id="percent" value="%"></td>
+					</tr>
+					<tr>
+						<td><input type="button" class="button number" onclick="input(value)" id="four" value="4"></td>
+						<td><input type="button" class="button number" onclick="input(value)" id="five" value="5"></td>
+						<td><input type="button" class="button number" onclick="input(value)" id="six" value="6"></td>
+						<td><input type="button" class="button symbol" onclick="operation(3)" id="multiply" value="*"></td>
+						<td><input type="button" class="button symbol" onclick="reciprocal()" id="reciprocal" value="1/x"></td>
+					</tr>
+					<tr>
+						<td><input type="button" class="button number" onclick="input(value)" id="one" value="1"></td>
+						<td><input type="button" class="button number" onclick="input(value)" id="two" value="2"></td>
+						<td><input type="button" class="button number" onclick="input(value)" id="three" value="3"></td>
+						<td><input type="button" class="button symbol" onclick="operation(2)" id="subtract" value="-"></td>
+						<th rowspan="2"><input type="button" class="button symbol" onclick="equal()" id="equal" value="=" style="height:100px"></th>
+					</tr>
+					<tr>
+						<th colspan="2"><input type="button" class="button number" onclick="input(value)" id="zero" value="0" style="width:103px"></th>
+						<td><input type="button" class="button symbol" onclick="input(value)" id="point" value="."></td>
+						<td><input type="button" class="button symbol" onclick="operation(1)" id="add" value="+"></td>
+					</tr>
+				</table>
+			</p>
+		</div>
+	</div>
+	<div class="record">
+		<button class="button number" onclick="recordClear()">Çå¿Õ</button> 
+		<p id="recText"></p>
+
+	</div> 
+	</div>
+</body>
+
+</html>

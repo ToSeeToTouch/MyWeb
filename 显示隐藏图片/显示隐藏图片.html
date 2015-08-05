@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<style type="text/css">
+	body
+	{
+		text-align:center;
+	}
+	p
+	{ 
+		text-align:left;
+		display: inline;
+	}
+	#content
+	{
+		width: 640px;
+		margin: auto;
+	}
+	#btn1,#btn2,#btn3,#btn4
+	{
+		margin:10px auto 20px auto;
+	}
+</style>
+
+	<script type="text/javascript">
+	//显示与隐藏
+	function disvisi () {
+		if (pic1.style.visibility == "hidden") {
+			check ();
+			pic1.style.visibility="visible";	
+			btn1.value="隐藏";
+	}else{
+		setDisable1(true);
+		pic1.style.visibility="hidden";
+		btn1.value="显示";
+	}
+	}
+	//图片切换
+	var srcArr = new Array();
+	function setSrc () {		
+		for (var i = 1; i <= 7; i++) {
+			srcArr[i-1] = "p"+i+".jpg";
+		};
+	}
+	
+	var n = 0;
+	function chooseFun (name) {
+		switch (name){
+			case "next":n++;break;
+			case "previous":n--;break;
+			case "first":n=0;break;
+			case "last":n=srcArr.length-1;break;
+		}
+		pic1.src=srcArr[n];
+		check ();
+		
+	}
+	function notice() {
+		document.getElementById('total').innerHTML=srcArr.length;
+		document.getElementById('now').innerHTML=n+1;
+	}
+	function check () {
+		switch (n){
+			case 0: 
+				setDisable2 (true);
+				break;
+			case srcArr.length-1:
+				setDisable2 (false);
+				break;
+			default: setDisable1(false);
+		}
+	}
+	function setDisable1 (flag) { 
+		btnFirst.disabled=flag;
+		btnLast.disabled=flag;
+		btnPrev.disabled=flag;
+		btnNext.disabled=flag;
+		btnPlay.disabled=flag;
+	}
+	function setDisable2 (flag) {
+		btnFirst.disabled=flag;
+		btnLast.disabled=!flag;
+		btnPrev.disabled=flag;
+		btnNext.disabled=!flag;
+	}
+	//自动播放
+	var t;
+	function clickPlay () {
+		document.getElementById('btnPlay').value="暂停";
+		document.getElementById('btnPlay').onclick=clickPause;
+		btn1.disabled=true;
+		setTimeout('play()',2000);
+		}
+	function clickPause () {
+		document.getElementById('btnPlay').value="播放";
+		document.getElementById('btnPlay').onclick=clickPlay;
+		btn1.disabled=false;
+		clearTimeout(t);
+		}
+			 
+	function play () {
+		if(n<srcArr.length-1){
+			chooseFun('next');
+				
+		}else{
+			chooseFun('first');
+		}
+		t=setTimeout('play()',2000);
+	}
+	</script>
+</head>
+
+<body>
+	<div id="Container">
+		<div id="content">
+			<p>总计</p><p  id="total"></p><p>张,当前第</p><p id="now"></p><p>张</p>
+			<img id="pic1" src="p1.jpg" width="640px" height="400px" onload="setSrc();notice()">
+			<input type="button" id="btn1" value="隐藏" onclick="disvisi()"></input>	
+			<input type="button" id="btnFirst" value="首张" disabled="true" onclick="chooseFun('first')"></input>
+			<input type="button" id="btnPrev" value="上一张" disabled="true" onclick="chooseFun('previous')"></input>
+			<input type="button" id="btnPlay" value="播放" onclick="clickPlay()"></input>
+			<input type="button" id="btnNext" value="下一张" onclick="chooseFun('next')"></input>
+			<input type="button" id="btnLast" value="末张" onclick="chooseFun('last')"></input>
+			
+		</div>
+	</div>
+</body>
+
+</html>

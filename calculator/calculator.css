@@ -1,0 +1,119 @@
+body
+{ 
+	background: #f5faff;
+}
+
+div.container
+{
+	width:50%;
+	margin:0 auto;   /*居中*/
+}
+div.calculate
+{
+	width: 296px;
+	border-style: solid;
+	border-color: grey;
+	float: left;
+}
+p
+{
+	text-align: center;
+}
+#disText
+{
+	width: 255px;
+	height: 50px;
+	font-size:xx-large;
+	text-align:right;
+}
+#recText
+{
+	width: 10em;
+	height: 270px;
+	text-align:left;
+	/*margin-top: 50px;*/
+	font-size: x-large;
+	overflow:auto;
+
+
+}
+/*#square
+{
+	width: 47px;
+	height: 45px;
+	background: url(p1.png) no-repeat top left;
+}
+*/
+.button
+{
+	width: 47px;
+	line-height: 38px;      /*设置行距*/
+	text-align: center;     /*规定文本的水平对齐方式*/
+	font-weight: bold;     
+	/*text-shadow:1px 1px 1px #333;*/
+	border-radius: 5px;
+	margin:0 2px 2px 0;    /*设置所有外边距属性*/
+	position: relative;
+	overflow: hidden;
+}
+.button.number
+{
+	color: #8c96a0;
+	text-shadow:1px 1px 1px #fff;
+	border:1px solid #dce1e6;
+	box-shadow: 0 1px 2px #fff inset,0 -1px 0 #a8abae inset;
+	background: -webkit-linear-gradient(top,#f2f3f7,#e4e8ec);
+	background: -moz-linear-gradient(top,#f2f3f7,#e4e8ec);
+	background: linear-gradient(top,#f2f3f7,#e4e8ec);
+}
+.button.number:hover     /*添加悬停效果*/
+{
+	background: -webkit-linear-gradient(top,#fefefe,#CCCCCC);
+	background: -moz-linear-gradient(top,#f2f3f7,#CCCCCC);
+	background: linear-gradient(top,#f2f3f7,#CCCCCC);
+}
+.button.number:active     /*点击后效果*/
+{
+	top:1px;
+	box-shadow: 0 1px 3px #a8abae inset,0 3px 0 #fff;
+	background: -webkit-linear-gradient(top,#e4e8ec,#e4e8ec);
+	background: -moz-linear-gradient(top,#e4e8ec,#e4e8ec);
+	background: linear-gradient(top,#e4e8ec,#e4e8ec);
+}
+.button.symbol
+{
+	color: #f2f3f7;
+	border:1px solid #333;
+	box-shadow: 0 1px 2px #8b8b8b inset,0 -1px 0 #3d3d3d inset,0 -2px 3px #8b8b8b inset;
+	background: -webkit-linear-gradient(top,grey,#4c4c4c);
+	background: -moz-linear-gradient(top,grey,#4a4a4a);
+	background: linear-gradient(top,grey,#4a4a4a);
+}
+
+.button.symbol:hover
+{
+	background: -webkit-linear-gradient(top,#999999,#575757);
+	background: -moz-linear-gradient(top,#999999,#575757);
+	background: linear-gradient(top,#999999,#575757);
+}
+.button.symbol:active{
+top:1px;
+box-shadow: 0 1px 3px #111 inset,0 3px 0 #fff;
+background: -webkit-linear-gradient(top,#424242,#575757);
+background: -moz-linear-gradient(top,#424242,#575757);
+background: linear-gradient(top,#424242,#575757);
+}
+div.base
+{
+	width: 270px;
+	margin:10px 10px 10px 10px; 
+	border-style: solid;
+}
+div.record
+{
+	width: 250px;
+	margin-left:310px;
+	border: solid gray;
+	padding:10px;
+	/*background: url(p1.jpg) no-repeat top left;*/
+}
