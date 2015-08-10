@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>旋转环形菜单</title>
+	<link rel="stylesheet" href="css/styles.css">
+	<style>
+		body {
+			background-color: #101010;
+		}
+		/*#ss_menu {
+		  bottom: 30px;
+		  width: 60px;
+		  height: 60px;
+		  color: #fff;
+		  position: fixed;
+		  -webkit-transition: all 1s ease;
+		  -moz-transition: all 1s ease;
+		  transition: all 1s ease;
+		  right: 30px;
+		  -webkit-transform: rotate(180deg);
+		  -moz-transform: rotate(180deg);
+		  -ms-transform: rotate(180deg);
+		  -o-transform: rotate(180deg);
+		  transform: rotate(180deg);
+		}
+		#ss_menu > .menu {
+		  display: block;
+		  position: absolute;
+		  border-radius: 50%;
+		  width: 60px;
+		  height: 60px;
+		  text-align: center;
+		  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.23), 0 3px 10px rgba(0, 0, 0, 0.16);
+		  color: #fff;
+		  -webkit-transition: all 1s ease;
+		  -moz-transition: all 1s ease;
+		  transition: all 1s ease;
+		}
+		#ss_menu > .menu .share {
+		  width: 100%;
+		  height: 100%;
+		  position: absolute;
+		  left: 0px;
+		  top: 0px;
+		  -webkit-transform: rotate(180deg);
+		  -moz-transform: rotate(180deg);
+		  -ms-transform: rotate(180deg);
+		  -o-transform: rotate(180deg);
+		  transform: rotate(180deg);
+		  -webkit-transition: all 1s ease;
+		  -moz-transition: all 1s ease;
+		  transition: all 1s ease;
+		} 
+		#ss_menu > .menu .share .circle {
+		  -webkit-transition: all 1s ease;
+		  -moz-transition: all 1s ease;
+		  transition: all 1s ease;
+		  position: absolute;
+		  width: 12px;
+		  height: 12px;
+		  border-radius: 50%;
+		  background: #fff;
+		  top: 50%;
+		  margin-top: -6px;
+		  left: 12px;
+		  opacity: 1;
+		}
+		#ss_menu > .menu .share .circle:after, #ss_menu > .menu .share .circle:before {
+		  -webkit-transition: all 1s ease;
+		  -moz-transition: all 1s ease;
+		  transition: all 1s ease;
+		  content: '';
+		  opacity: 1;
+		  display: block;
+		  position: absolute;
+		  width: 12px;
+		  height: 12px;
+		  border-radius: 50%;
+		  background: #fff;
+		}
+		#ss_menu > .menu .share .circle:after {
+		  left: 20.78461px;
+		  top: 12.0px;
+		}
+		#ss_menu > .menu .share .circle:before {
+		  left: 20.78461px;
+		  top: -12.0px;
+		}
+		#ss_menu > .menu .share .bar {
+		  -webkit-transition: all 1s ease;
+		  -moz-transition: all 1s ease;
+		  transition: all 1s ease;
+		  width: 24px;
+		  height: 3px;
+		  background: #fff;
+		  position: absolute;
+		  top: 50%;
+		  margin-top: -1.5px;
+		  left: 18px;
+		  -webkit-transform-origin: 0% 50%;
+		  -moz-transform-origin: 0% 50%;
+		  -ms-transform-origin: 0% 50%;
+		  -o-transform-origin: 0% 50%;
+		  transform-origin: 0% 50%;
+		  -webkit-transform: rotate(30deg);
+		  -moz-transform: rotate(30deg);
+		  -ms-transform: rotate(30deg);
+		  -o-transform: rotate(30deg);
+		  transform: rotate(30deg);
+		}
+		#ss_menu > .menu .share .bar:before {
+		  -webkit-transition: all 1s ease;
+		  -moz-transition: all 1s ease;
+		  transition: all 1s ease;
+		  content: '';
+		  width: 24px;
+		  height: 3px;
+		  background: #fff;
+		  position: absolute;
+		  left: 0px;
+		  -webkit-transform-origin: 0% 50%;
+		  -moz-transform-origin: 0% 50%;
+		  -ms-transform-origin: 0% 50%;
+		  -o-transform-origin: 0% 50%;
+		  transform-origin: 0% 50%;
+		  -webkit-transform: rotate(-60deg);
+		  -moz-transform: rotate(-60deg);
+		  -ms-transform: rotate(-60deg);
+		  -o-transform: rotate(-60deg);
+		  transform: rotate(-60deg);
+		}
+		#ss_menu > .menu .share.close .circle {
+		  opacity: 0;
+		}
+		#ss_menu > .menu .share.close .bar {
+		  top: 50%;
+		  margin-top: -1.5px;
+		  left: 50%;
+		  margin-left: -12px;
+		  -webkit-transform-origin: 50% 50%;
+		  -moz-transform-origin: 50% 50%;
+		  -ms-transform-origin: 50% 50%;
+		  -o-transform-origin: 50% 50%;
+		  transform-origin: 50% 50%;
+		  -webkit-transform: rotate(405deg);
+		  -moz-transform: rotate(405deg);
+		  -ms-transform: rotate(405deg);
+		  -o-transform: rotate(405deg);
+		  transform: rotate(405deg);
+		}
+		#ss_menu > .menu .share.close .bar:before {
+		  -webkit-transform-origin: 50% 50%;
+		  -moz-transform-origin: 50% 50%;
+		  -ms-transform-origin: 50% 50%;
+		  -o-transform-origin: 50% 50%;
+		  transform-origin: 50% 50%;
+		  -webkit-transform: rotate(-450deg);
+		  -moz-transform: rotate(-450deg);
+		  -ms-transform: rotate(-450deg);
+		  -o-transform: rotate(-450deg);
+		  transform: rotate(-450deg);
+		}
+		#ss_menu > .menu.ss_active {
+		  background: #00796B;
+		  -webkit-transform: scale(0.7);
+		  -moz-transform: scale(0.7);
+		  -ms-transform: scale(0.7);
+		  -o-transform: scale(0.7);
+		  transform: scale(0.7);
+		}*/
+		         
+	</style>
+</head>
+<body>
+	<div id='ss_menu'>
+	  <div>借会议室
+	    <i class="fa fa-qq"></i>
+	    <!-- <img src="img/apply.png"> -->
+	  </div>
+	  <div>借活动室
+	    <!-- <img src="img/app2.png"> -->
+	    <i class="fa fa-weibo"></i>
+	  </div>
+	  <div>借物资
+	    <!-- <img src="img/card2.png"> -->
+	    <i class="fa fa-weixin"></i>
+	  </div>
+	  <div>预约记录
+	    <!-- <img src="img/next2.png"> -->
+	    <i class="fa fa-renren"></i>
+	  </div>
+	  <div class='menu'>
+	    <div class='share' id='ss_toggle' data-rot='180'>
+	      <div class='circle'></div>
+	      <div class='bar'></div>
+	    </div>
+	  </div>
+	</div>  
+	<script src="js/jquery-2.1.1.min.js"></script> 
+	<script type="text/javascript">
+		var toggle = $('#ss_toggle');
+		var menu = $('#ss_menu');
+		var rot;
+		$('#ss_toggle').on('click', function (ev) {
+		    rot = parseInt($(this).data('rot')) - 180;
+		    menu.css('transform', 'rotate(' + rot + 'deg)');
+		    menu.css('webkitTransform', 'rotate(' + rot + 'deg)');
+		    if (rot / 180 % 2 == 0) {
+		        toggle.parent().addClass('ss_active');
+		        toggle.addClass('close');
+		    } else {
+		        toggle.parent().removeClass('ss_active');
+		        toggle.removeClass('close');
+		    }
+		    $(this).data('rot', rot);
+		});   
+		menu.on('transitionend webkitTransitionEnd oTransitionEnd', function () {
+		    if (rot / 180 % 2 == 0) {
+		        $('#ss_menu div img').addClass('ss_animate');
+		    } else {
+		        $('#ss_menu div img').removeClass('ss_animate');
+		    }
+		});                     
+	</script>       
+</body>
+</html>
