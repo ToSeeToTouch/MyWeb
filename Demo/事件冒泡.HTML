@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件冒泡test</title>
+</head>
+<body>
+	<div id="el1">
+		<div id="el2">test</div>
+	</div>
+	<script>
+	//触发顺序2、3、4、1
+	el1.addEventListener('click',function  () {
+		alert(1);
+	});
+	el2.addEventListener('click',function  () {
+		alert(2);
+	});
+	el2.addEventListener('click',function  () {
+		alert(3);
+	});
+	el2.addEventListener('click',function  () {
+		alert(4);
+	});
+	</script>
+</body>
+</html>
